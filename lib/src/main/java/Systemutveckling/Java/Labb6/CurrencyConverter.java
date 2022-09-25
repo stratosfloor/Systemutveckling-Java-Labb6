@@ -5,6 +5,21 @@ import java.math.RoundingMode;
 
 import org.joda.money.*;
 
+/**
+ * Using <a href="https://www.joda.org/joda-money/">Joda-Money</a>to handle conversion between USD, GBP, EUR.
+ * <br>
+ * Input must be in Object Money and Object CurrencyUnit to work, NOT STRING!
+ * <br>
+ * Conversion rates is fixed.
+ * 
+ * @param Money		&emsp; &emsp; &emsp;	an amount of Money
+ * @param CurrencyUnit &emsp;	what currency to convert FROM
+ * @param CurrencyUnit &emsp;	what currency to convert TO
+ * 
+ * @return the converted Money
+ *
+ */
+
 public class CurrencyConverter {
 
 	private static final BigDecimal USDtoEUR = new BigDecimal("1.0250677");
@@ -23,8 +38,6 @@ public class CurrencyConverter {
 	protected Money convert(Money amount, CurrencyUnit fromUnit, CurrencyUnit toUnit) {
 
 		BigDecimal rate = null;
-
-
 		try {
 
 			if (fromUnit == usd) {
