@@ -56,7 +56,7 @@ public class CurrencyConverterMain {
 				break;
 			case 3:
 
-				fromUnit = "GBP";
+				fromUnit = "EUR";
 				printConvert("EUR");
 				
 				choice2 = sc.nextInt();
