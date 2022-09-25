@@ -21,7 +21,7 @@ public class CurrencyConverter {
 	private static final CurrencyUnit eur = CurrencyUnit.of("EUR");
 	private static final CurrencyUnit gbp = CurrencyUnit.of("GBP");
 	
-	private static Money convert(Money amount, CurrencyUnit fromUnit, CurrencyUnit toUnit) {
+	protected Money convert(Money amount, CurrencyUnit fromUnit, CurrencyUnit toUnit) {
 
 		BigDecimal rate = null;
 		
@@ -49,26 +49,8 @@ public class CurrencyConverter {
 			System.out.println("FEL");
 		}
 	
-	
-		return amount.convertedTo(toUnit, rate, RoundingMode.HALF_EVEN);
-		
+		return amount.convertedTo(toUnit, rate, RoundingMode.HALF_UP);
 		
 	}
-	
-	public static void main(String[] args) {
-		
-		Money money = Money.parse("USD 23.87");
-		System.out.println("money: " + money);
-		
-//		Money moneyinEUR = money.convertedTo(CurrencyUnit.EUR, USDtoEUR, RoundingMode.HALF_EVEN);
-//		System.out.println(moneyinEUR);
-		
-		Money money2 = convert(money, usd, eur);
-		Money money3 = convert(money2, eur, gbp);
-		
-		System.out.println("money2: " + money2);
-		System.out.println("money3: " + money3);
-	}
-	
-	
+
 }
