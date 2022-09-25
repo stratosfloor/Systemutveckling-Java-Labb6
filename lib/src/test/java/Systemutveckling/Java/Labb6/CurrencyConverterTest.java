@@ -2,6 +2,7 @@
 package Systemutveckling.Java.Labb6;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,6 +20,7 @@ class CurrencyConverterTest {
 	private static Money amount3 = null;
 
 	@Test
+	@DisplayName("Test convert amount zero")
 	void testConvertZero() {
 		
 		amount1 = Money.parse("USD 0");
@@ -32,6 +34,7 @@ class CurrencyConverterTest {
 	}
 
 	@Test
+	@DisplayName("Test convert to same currency")
 	void testConvertSameCurrency() {
 
 		amount1 = Money.parse("USD 100");
@@ -49,6 +52,31 @@ class CurrencyConverterTest {
 			converter.convert(amount3, gbp, gbp);
 		});
 
+	}
+	
+	@Test
+	@DisplayName("Test convert from US Dollars")
+	void testConverUSDollar() {
+		amount1 = Money.parse("USD 100");
+		
+		assertEquals(converter.convert(amount1, usd, eur), Money.parse("EUR 102.51"));
+		assertEquals(converter.convert(amount1, usd, gbp), Money.parse("GBP 90.17"));
+	}
+	@Test
+	@DisplayName("Test convert from GB Pounds")
+	void testConverGBPound() {
+		amount1 = Money.parse("GBP 100");
+		
+		assertEquals(converter.convert(amount1, gbp, eur), Money.parse("EUR 113.44"));
+		assertEquals(converter.convert(amount1, gbp, usd), Money.parse("USD 110.90"));
+	}
+	@Test
+	@DisplayName("Test convert from Euro")
+	void testConverEuro() {
+		amount1 = Money.parse("EUR 100");
+		
+		assertEquals(converter.convert(amount1, eur, usd), Money.parse("USD 97.55"));
+		assertEquals(converter.convert(amount1, eur, gbp), Money.parse("GBP 88.15"));
 	}
 
 }
